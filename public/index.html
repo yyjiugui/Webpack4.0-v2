@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <!-- 
+		好处一:
+		起步章节: (webpack管理脚本文件 - js文件) 传统的开发方式  我们会在html中引入一系列的js脚本文件<script></script>标签之间存在依赖关系。
+		例如: 某一个js文件执行之前会依赖上一个js文件的加载。
+		使用这种方式去管理Javascript项目会有一个问题:
+		一、无法立即体现,脚本依赖外部那个拓展库
+		二、如果依赖不存在或者引入顺序错误，应用程序将无法正常运行。
+		三、如果依赖被引入但是并没有使用，浏览器将会被迫下载无用代码。
+		现在，让我们用webpack来管理这些脚本
+		--></head>
+
+  <body>
+    <div id="app"></div>
+    <div style="border-bottom: 1px solid #ccc;">
+      <h3>copy-webpack-plugin插件处理的资源</h3>
+      <img src="./assets/index_02.png" alt="" />
+    </div>
+    <div style="border-bottom: 1px solid #ccc;">
+      <h3>html文件中引入的资源</h3>
+      <img src="../src/assets/images/userCenter_08.png" alt="" title="哈哈哈" />
+    </div>
+    <div>
+      <audio src="./assets/mp3.mp3" controls></audio>
+    </div>
+    <div>
+      <video src="./assets/largeres_vobsub.mkv" controls></video>
+    </div>
+
+    <script>
+      var a = 1000
+    </script>
+  </body>
+</html>
