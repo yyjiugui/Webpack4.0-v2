@@ -8,20 +8,14 @@
       </div>
       <div style="border-bottom: 1px solid #ccc">
         <h3>.vue文件中的img标签引入的资源</h3>
-        <img src="../assets/images/addAssets_05.png" alt="" />
+        <img src="../assets/images/addAssets_05.png" alt />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  mounted() {
-    let element = document.getElementById('box')
-    console.log(element)
-    console.log(this.$refs['box'])
-  }
-}
+export default {}
 </script>
 
 <style></style>

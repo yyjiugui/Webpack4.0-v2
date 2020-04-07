@@ -8,23 +8,30 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const webpack = require('webpack')
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 // 使用配置 指定入口和出口;
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, '..', './dist'),
-    filename: 'index.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
       // webpack只理解JavaScript文件
       {
         test: /\.css$/, // webpack在读取loader时 从右到左以管道的方式链式调用
-        use: ['style-loader', 'css-loader'] // css-loader解析css文件 style-loader将解析后的结果 放到html中 使其生效
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'] // css-loader解析css文件 style-loader: 动态创建style标签放到dom节点中,使其生效
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader',
+          'postcss-loader'
+        ]
         // 通过less-loader转化为css文件 ---> css-loader再处理less-loader转化为的css文件 --> 然后style-loader将解析后的结果 放到html中
       },
       {
@@ -119,6 +126,9 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
       jQuerytest: 'jquery'
+    }), // mini-css-extract-plugin是用于将CSS提取为独立的文件的插件，对每个包含css的js文件都会创建一个CSS文件，支持按需加载css
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
     })
   ]
 }
